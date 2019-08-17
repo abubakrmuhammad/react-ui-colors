@@ -1,0 +1,25 @@
+.Palette {
+  height: 100vh;
+  position: relative;
+
+  &__colors {
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  &__footer {
+    background-color: #fff;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 700;
+
+    .emoji {
+      font-size: 1.2rem;
+      margin: 0 12px 0 8px;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import chroma from 'chroma-js';
 import slugify from 'slugify';
 
 export function generatePalette(palette) {
-  const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+  const levels = [100, 200, 300, 400, 500, 600, 700, 800, 900];
   const { paletteName, id, emoji, colors } = palette;
   const newColors = {};
 
@@ -47,10 +47,12 @@ function generateScale(hexColor, numberOfColors) {
 
 function generateRange(hexColor) {
   const darkShade = chroma(hexColor)
-    .darken(1.4)
+    .darken(1.5)
     .hex();
   const theColor = hexColor;
-  const lightShade = '#fff';
+  const lightShade = chroma(hexColor)
+    .brighten(1.5)
+    .hex();
 
   const range = [darkShade, theColor, lightShade];
 

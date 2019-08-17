@@ -53,8 +53,8 @@
         &:hover,
         &:focus,
         &:active {
-          background-color: green;
-          border-color: green;
+          background-color: #10ac84;
+          border-color: #10ac84;
           height: 20px;
           width: 20px;
           margin-top: -5px;
@@ -70,13 +70,5 @@
     justify-self: flex-end;
     margin-right: 16px;
     text-transform: uppercase;
-
-    .MuiSelect-selectMenu {
-      // padding
-    }
-
-    .MuiSelect-selectMenu {
-      // margin: 0 8px;
-    }
   }
 }

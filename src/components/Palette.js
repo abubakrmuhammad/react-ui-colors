@@ -27,14 +27,14 @@ class Palette extends Component {
 
   render() {
     const { level, colorFormat, showOverlay } = this.state;
-    const { colors } = this.props.palette;
+    const { colors, paletteName, emoji } = this.props.palette;
 
     const colorBoxes = colors[level].map(color => (
-      <ColorBox name={color.name} color={color[colorFormat]} />
+      <ColorBox key={color.id} name={color.name} color={color[colorFormat]} />
     ));
 
     return (
-      <section className='Pallete'>
+      <div className='Palette'>
         <Navbar
           level={level}
           format={colorFormat}
@@ -46,8 +46,11 @@ class Palette extends Component {
           title={`Color Format Changed!`}
           palette={colors[500]}
         />
-        <div className='Pallete__colors'>{colorBoxes}</div>
-      </section>
+        <section className='Palette__colors'>{colorBoxes}</section>
+        <footer className='Palette__footer'>
+          {paletteName} <span className='emoji'>{emoji}</span>
+        </footer>
+      </div>
     );
   }
 }
