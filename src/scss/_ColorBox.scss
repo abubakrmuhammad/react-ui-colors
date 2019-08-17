@@ -1,0 +1,48 @@
+.ColorBox {
+  position: relative;
+  cursor: pointer;
+
+  & > * {
+    position: absolute;
+    outline: none;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &__copy {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(#fff, 0.3);
+    padding: 8px 24px;
+    font-size: 1rem;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+
+  &:hover &__copy {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__name {
+    bottom: 7px;
+    left: 9px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+
+  &__more {
+    bottom: 0;
+    right: 0;
+    background-color: rgba(#fff, 0.3);
+    text-align: center;
+    padding: 4px 10px;
+  }
+}

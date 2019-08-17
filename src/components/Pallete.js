@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ColorBox from './ColorBox';
-import './css/Pallete.scss';
+
 
 class Pallete extends Component {
   render() {
