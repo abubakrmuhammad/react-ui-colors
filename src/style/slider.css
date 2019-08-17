@@ -1,0 +1,27 @@
+.slider {
+  width: 25%;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.rc-slider-track {
+  background-color: transparent;
+}
+
+.rc-slider-rail {
+  height: 10px;
+}
+
+.rc-slider-handle,
+.rc-slider-handle:hover,
+.rc-slider-handle:focus,
+.rc-slider-handle:active {
+  background-color: green;
+  border-color: green;
+  height: 20px;
+  width: 20px;
+  margin-top: -5px;
+  outline: none;
+  box-shadow: none;
+  box-shadow: none;
+}
