@@ -1,7 +1,7 @@
 import chroma from 'chroma-js';
 import slugify from 'slugify';
 
-export default function generatePalette(palette) {
+export function generatePalette(palette) {
   const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
   const { paletteName, id, emoji, colors } = palette;
   const newColors = {};
