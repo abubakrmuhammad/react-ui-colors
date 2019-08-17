@@ -1,7 +1,7 @@
 import React from 'react';
 import Palette from './components/Palette';
 import palettes from './seedColors';
-import { generatePalette } from './utils';
+import { generatePalette } from './utils/colors';
 
 function App() {
   return (

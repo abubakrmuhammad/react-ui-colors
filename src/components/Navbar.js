@@ -24,9 +24,10 @@ function Navbar({ level, format, changeLevel, changeFormat }) {
       </div>
       <div className='Navbar__select'>
         <Select value={format} onChange={changeFormat}>
-          <MenuItem value='hex'>Hex (#aa1923)</MenuItem>
-          <MenuItem value='rgb'>rgb - (1, 2, 3)</MenuItem>
-          <MenuItem value='rgba'>rgba - (1, 2, 3, 0.4)</MenuItem>
+          <MenuItem value='hex'>HEX - (#DE4536)</MenuItem>
+          <MenuItem value='rgb'>RGB - (1, 2, 3)</MenuItem>
+          <MenuItem value='rgba'>RGBA - (1, 2, 3, 0.4)</MenuItem>
+          <MenuItem value='hsl'>HSL - (145, 65%, 47%)</MenuItem>
         </Select>
       </div>
     </header>

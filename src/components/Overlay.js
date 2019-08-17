@@ -1,22 +1,23 @@
 import React from 'react';
+import { chooseRandomFrom } from '../utils/misc';
 
-function Overlay({ backgroundColor, visible, title }) {
+function Overlay({ backgroundColor, visible, title, palette }) {
+  let color = backgroundColor;
+
+  if (!backgroundColor) color = chooseRandomFrom(palette).hex;
+
   return (
-    <div className='Overlay'>
-      <div
-        style={{ backgroundColor }}
-        className={`Overlay__backdrop ${visible && 'visible'}`}
-      />
-      <div className={`Overlay__message ${visible && 'visible'}`}>
+    <div className={`Overlay ${visible && 'visible'}`}>
+      <div style={{ backgroundColor: color }} className='Overlay__backdrop ' />
+      <div className='Overlay__message'>
         <h1>{title}</h1>
-        <p>{backgroundColor}</p>
+        {backgroundColor && <p>{backgroundColor}</p>}
       </div>
     </div>
   );
 }
 
 Overlay.defaultProps = {
-  backgroundColor: '#e74c3c',
   visible: false,
   title: 'Copied!'
 };
