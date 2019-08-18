@@ -1,8 +1,7 @@
 import React from 'react';
 import Palette from './components/Palette';
 import { Route, Switch } from 'react-router-dom';
-import palettes from './seedColors';
-import { generatePalette } from './utils/colors';
+import { findPalette } from './utils/colors';
 
 function App() {
   return (
@@ -11,7 +10,9 @@ function App() {
       <Route
         exact
         path='/palette/:id'
-        render={() => <Palette palette={generatePalette(palettes[1])} />}
+        render={({ match }) => (
+          <Palette palette={findPalette(match.params.id)} />
+        )}
       />
     </Switch>
   );

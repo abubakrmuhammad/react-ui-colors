@@ -1,5 +1,10 @@
 import chroma from 'chroma-js';
 import slugify from 'slugify';
+import palettes from '../palettes';
+
+export function findPalette(id) {
+  return generatePalette(palettes.find(palette => palette.id === id));
+}
 
 export function generatePalette(palette) {
   const levels = [100, 200, 300, 400, 500, 600, 700, 800, 900];
