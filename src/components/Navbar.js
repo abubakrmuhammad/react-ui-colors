@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from 'rc-slider';
@@ -8,7 +9,7 @@ function Navbar({ level, format, changeLevel, changeFormat }) {
   return (
     <header className='Navbar'>
       <div className='Navbar__logo'>
-        <a href='/'>reactuicolors</a>
+        <Link to='/'>reactuicolors</Link>
       </div>
       <div className='Navbar__slider'>
         <span className='Navbar__level'>

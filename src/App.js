@@ -1,12 +1,18 @@
 import React from 'react';
-import Palette from './components/Palette';
 import { Route, Switch } from 'react-router-dom';
+import PaletteList from './components/PaletteList';
+import Palette from './components/Palette';
+import palettes from './palettes';
 import { findPalette } from './utils/colors';
 
 function App() {
   return (
     <Switch>
-      <Route exact path='/' render={() => <h1>Palette List</h1>} />
+      <Route
+        exact
+        path='/'
+        render={() => <PaletteList palettes={palettes} />}
+      />
       <Route
         exact
         path='/palette/:id'
