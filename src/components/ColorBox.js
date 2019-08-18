@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Overlay from './Overlay';
 
@@ -28,7 +29,13 @@ class ColorBox extends Component {
         <div style={{ backgroundColor: color }} className='ColorBox'>
           <button className='ColorBox__copy'>Copy</button>
           <p className='ColorBox__name'>{name}</p>
-          <button className='ColorBox__more'>More</button>
+          <Link
+            className='ColorBox__more'
+            to='/'
+            onClick={e => e.stopPropagation()}
+          >
+            More
+          </Link>
 
           <Overlay backgroundColor={color} visible={copied} />
         </div>

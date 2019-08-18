@@ -20,6 +20,11 @@ function App() {
           <Palette palette={findPalette(match.params.id)} />
         )}
       />
+      <Route
+        exact
+        path='/palette/:paletteId/:colorId'
+        render={() => <h1>Signle Color Page</h1>}
+      />
     </Switch>
   );
 }
