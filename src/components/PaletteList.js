@@ -16,18 +16,18 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: '10vh',
+    height: '100px',
     '& h1': {
       textTransform: 'uppercase',
       color: '#fff',
-      fontSize: '2rem',
+      fontSize: '1.9rem',
       letterSpacing: '1px'
     }
   },
   palettes: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-    gridGap: '1rem'
+    gridGap: '40px 5%'
   }
 };
 
@@ -38,9 +38,10 @@ function PaletteList({ classes, palettes }) {
         <nav className={classes.nav}>
           <h1>React UI Colors</h1>
         </nav>
+
         <div className={classes.palettes}>
           {palettes.map(palette => (
-            <MiniPalette {...palette} />
+            <MiniPalette key={palette.id} {...palette} />
           ))}
         </div>
       </div>
