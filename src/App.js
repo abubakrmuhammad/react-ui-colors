@@ -24,7 +24,12 @@ function App() {
       <Route
         exact
         path='/palette/:paletteId/:colorId'
-        render={() => <ColorPalette />}
+        render={({ match }) => (
+          <ColorPalette
+            colorId={match.params.colorId}
+            palette={findPalette(match.params.paletteId)}
+          />
+        )}
       />
     </Switch>
   );

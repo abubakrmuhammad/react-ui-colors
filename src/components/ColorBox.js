@@ -29,13 +29,15 @@ class ColorBox extends Component {
         <div style={{ backgroundColor: color }} className='ColorBox'>
           <button className='ColorBox__copy'>Copy</button>
           <p className='ColorBox__name'>{name}</p>
-          <Link
-            className='ColorBox__more'
-            to={moreUrl}
-            onClick={e => e.stopPropagation()}
-          >
-            More
-          </Link>
+          {moreUrl && (
+            <Link
+              className='ColorBox__more'
+              to={moreUrl}
+              onClick={e => e.stopPropagation()}
+            >
+              More
+            </Link>
+          )}
 
           <Overlay backgroundColor={color} visible={copied} />
         </div>
