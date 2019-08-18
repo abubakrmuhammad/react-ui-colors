@@ -10,6 +10,8 @@
   text-transform: uppercase;
   text-align: center;
   color: #fff;
+  cursor: default;
+  user-select: text;
 
   &.visible {
     z-index: 5;
@@ -57,7 +59,7 @@
     visibility: hidden;
 
     h1 {
-      font-size: 7rem;
+      font-size: 7em;
       font-weight: 400;
       text-shadow: 2px 3px #000;
       background-color: rgba(#fff, 0.2);

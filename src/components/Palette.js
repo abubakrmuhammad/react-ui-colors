@@ -45,6 +45,7 @@ class Palette extends Component {
           visible={showOverlay}
           title={`Color Format Changed!`}
           palette={colors[500]}
+          style={{ fontSize: '60%' }}
         />
         <section className='Palette__colors'>{colorBoxes}</section>
         <footer className='Palette__footer'>

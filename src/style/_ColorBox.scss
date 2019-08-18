@@ -1,6 +1,7 @@
 .ColorBox {
   position: relative;
   cursor: pointer;
+  user-select: none;
 
   & > * {
     position: absolute;

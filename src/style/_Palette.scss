@@ -2,6 +2,11 @@
   height: 100vh;
   position: relative;
 
+  & *::selection {
+    background: #10ac84;
+    color: #fff;
+  }
+
   &__colors {
     height: 90%;
     display: grid;
