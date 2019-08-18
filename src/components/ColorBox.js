@@ -22,7 +22,7 @@ class ColorBox extends Component {
 
   render() {
     const { copied } = this.state;
-    const { name, color } = this.props;
+    const { name, color, moreUrl } = this.props;
 
     return (
       <CopyToClipboard text={color} onCopy={this.changeCopyState}>
@@ -31,7 +31,7 @@ class ColorBox extends Component {
           <p className='ColorBox__name'>{name}</p>
           <Link
             className='ColorBox__more'
-            to='/'
+            to={moreUrl}
             onClick={e => e.stopPropagation()}
           >
             More

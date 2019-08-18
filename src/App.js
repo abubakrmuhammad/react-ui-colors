@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PaletteList from './components/PaletteList';
 import Palette from './components/Palette';
+import ColorPalette from './components/ColorPalette';
 import palettes from './palettes';
 import { findPalette } from './utils/colors';
 
@@ -23,7 +24,7 @@ function App() {
       <Route
         exact
         path='/palette/:paletteId/:colorId'
-        render={() => <h1>Signle Color Page</h1>}
+        render={() => <ColorPalette />}
       />
     </Switch>
   );
