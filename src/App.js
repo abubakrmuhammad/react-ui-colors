@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import PaletteList from './components/PaletteList';
 import Palette from './components/Palette';
 import ColorPalette from './components/ColorPalette';
+import NewPaletteForm from './components/NewPaletteForm';
 import palettes from './palettes';
 import { findPalette } from './utils/colors';
 
@@ -14,6 +15,7 @@ function App() {
         path='/'
         render={() => <PaletteList palettes={palettes} />}
       />
+      <Route exact path='/palette/new' render={() => <NewPaletteForm />} />
       <Route
         exact
         path='/palette/:id'
