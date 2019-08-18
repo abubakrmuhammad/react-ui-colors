@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Overlay from './Overlay';
-import ColorBox from './ColorBox';
 import Navbar from './Navbar';
+import ColorBox from './ColorBox';
+import PaletteFooter from './PaletteFooter';
+import Overlay from './Overlay';
 
 class Palette extends Component {
   constructor(props) {
@@ -53,9 +54,7 @@ class Palette extends Component {
           style={{ fontSize: '60%' }}
         />
         <section className='Palette__colors'>{colorBoxes}</section>
-        <footer className='Palette__footer'>
-          {paletteName} <span className='emoji'>{emoji}</span>
-        </footer>
+        <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     );
   }

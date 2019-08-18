@@ -11,18 +11,20 @@ function Navbar({ level, format, changeLevel, changeFormat }) {
       <div className='Navbar__logo'>
         <Link to='/'>reactuicolors</Link>
       </div>
-      <div className='Navbar__slider'>
-        <span className='Navbar__level'>
-          Level: <b>{level}</b>
-        </span>
-        <Slider
-          defaultValue={level}
-          min={100}
-          max={900}
-          step={100}
-          onChange={changeLevel}
-        />
-      </div>
+      {level && (
+        <div className='Navbar__slider'>
+          <span className='Navbar__level'>
+            Level: <b>{level}</b>
+          </span>
+          <Slider
+            defaultValue={level}
+            min={100}
+            max={900}
+            step={100}
+            onChange={changeLevel}
+          />
+        </div>
+      )}
       <div className='Navbar__select'>
         <Select value={format} onChange={changeFormat}>
           <MenuItem value='hex'>HEX - (#DE4536)</MenuItem>
