@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
@@ -38,16 +39,30 @@ class ColorPalette extends Component {
 
   render() {
     const { colorFormat, showOverlay } = this.state;
-    const { paletteName, emoji } = this.props.palette;
+    const { paletteName, emoji, id: paletteId } = this.props.palette;
 
     const colorBoxes = this._shades.map(color => (
       <ColorBox key={color.name} name={color.name} color={color[colorFormat]} />
     ));
 
     return (
-      <div className='Palette'>
+      <div className='ColorPalette Palette'>
         <Navbar format={colorFormat} changeFormat={this.changeFormat} />
-        <section className='Palette__colors'>{colorBoxes}</section>
+        <section className='Palette__colors'>
+          {colorBoxes}
+          <div
+            style={{ backgroundColor: '#222', cursor: 'default' }}
+            className='ColorBox'
+          >
+            <Link
+              to={`/palette/${paletteId}`}
+              className='ColorBox__copy'
+              style={{ opacity: '1', visibility: 'visible' }}
+            >
+              Go Back
+            </Link>
+          </div>
+        </section>
         <Overlay
           visible={showOverlay}
           title={`Color Format Changed!`}

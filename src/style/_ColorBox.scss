@@ -10,6 +10,8 @@
     border: none;
     text-transform: uppercase;
     cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
   }
 
   &__copy {
@@ -22,6 +24,7 @@
     font-size: 1rem;
     text-align: center;
     visibility: hidden;
+    text-decoration: none;
     opacity: 0;
     transition: all 0.3s;
   }

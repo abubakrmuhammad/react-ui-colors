@@ -28,3 +28,9 @@
     }
   }
 }
+
+.ColorPalette {
+  .Palette__colors {
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
