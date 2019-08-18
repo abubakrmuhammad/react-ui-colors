@@ -17,3 +17,11 @@ body {
   color: #333;
   overflow: hidden;
 }
+
+.light-text * {
+  color: #fff !important;
+}
+
+.dark-text * {
+  color: #333 !important;
+}
