@@ -82,6 +82,7 @@ class NewPaletteForm extends React.Component {
 
     this.state = {
       open: true,
+      newPaletteName: '',
       newColorName: '',
       currentColor: '#10ac84',
       colors: []
@@ -103,6 +104,12 @@ class NewPaletteForm extends React.Component {
 
     ValidatorForm.addValidationRule('isUniqueColor', () =>
       this.state.colors.every(color => color.color !== this.state.currentColor)
+    );
+
+    ValidatorForm.addValidationRule('isUniquePaletteName', name =>
+      this.props.palettes.every(
+        palette => palette.paletteName.toLowerCase() !== name.toLowerCase()
+      )
     );
   }
 
@@ -130,11 +137,11 @@ class NewPaletteForm extends React.Component {
   }
 
   savePalette() {
-    const name = 'New Test Palette';
-    const id = slugify(name, { lower: true });
+    const paletteName = this.state.newPaletteName;
+    const id = slugify(paletteName, { lower: true });
 
     const newPalette = {
-      name,
+      paletteName,
       id,
       colors: this.state.colors
     };
@@ -169,13 +176,20 @@ class NewPaletteForm extends React.Component {
             <Typography variant='h6' color='inherit' noWrap>
               Create Palette
             </Typography>
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={this.savePalette}
-            >
-              Save Palette
-            </Button>
+            <ValidatorForm onSubmit={this.savePalette}>
+              <TextValidator
+                label='Palette Name'
+                value={this.state.newPaletteName}
+                validators={['required', 'isUniquePaletteName']}
+                errorMessages={['Enter a Palette Name', 'Name Already Used']}
+                onChange={e =>
+                  this.setState({ newPaletteName: e.target.value })
+                }
+              />
+              <Button variant='contained' color='primary' type='submit'>
+                Save Palette
+              </Button>
+            </ValidatorForm>
           </Toolbar>
         </AppBar>
         <Drawer
