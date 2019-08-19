@@ -95,6 +95,7 @@ class NewPaletteForm extends React.Component {
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.changeCurrentColor = this.changeCurrentColor.bind(this);
     this.addNewColor = this.addNewColor.bind(this);
+    this.removeColor = this.removeColor.bind(this);
     this.savePalette = this.savePalette.bind(this);
   }
 
@@ -137,6 +138,12 @@ class NewPaletteForm extends React.Component {
     this.setState(state => ({
       colors: [...state.colors, newColor]
     }));
+  }
+
+  removeColor(colorName) {
+    const colors = this.state.colors.filter(color => color.name !== colorName);
+
+    this.setState({ colors });
   }
 
   savePalette() {
@@ -231,7 +238,7 @@ class NewPaletteForm extends React.Component {
               errorMessages={[
                 'Enter a Color Name',
                 'Color name must be Unique',
-                'Each color must be Different'
+                'Color already Added'
               ]}
             />
             <Button
@@ -251,7 +258,11 @@ class NewPaletteForm extends React.Component {
         >
           <div className={classes.drawerHeader} />
           {this.state.colors.map(color => (
-            <DraggableColorBox {...color} />
+            <DraggableColorBox
+              key={color.name}
+              {...color}
+              removeBox={this.removeColor}
+            />
           ))}
         </main>
       </div>

@@ -1,13 +1,14 @@
 .DraggableColorBox {
   position: relative;
   user-select: none;
+  display: inline-block;
+  color: #fff;
+  height: 25%;
+  width: 20%;
 
   & > * {
     position: absolute;
     bottom: 7px;
-    outline: none;
-    color: #fff;
-    border: none;
     text-transform: uppercase;
     font-family: inherit;
     font-weight: 600;
