@@ -16,6 +16,7 @@ import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
+import { chooseRandomFrom } from '../utils/misc';
 
 const drawerWidth = 300;
 
@@ -78,6 +79,10 @@ const styles = theme => ({
 });
 
 class NewPaletteForm extends React.Component {
+  static defaultProps = {
+    maxColors: 20
+  };
+
   constructor(props) {
     super(props);
 
@@ -86,17 +91,16 @@ class NewPaletteForm extends React.Component {
       newPaletteName: '',
       newColorName: '',
       currentColor: '#10ac84',
-      colors: [
-        { name: 'Good Green', color: '#10ac84' },
-        { name: 'Good Yellow', color: '#ffeb3b' }
-      ]
+      colors: props.palettes[0].colors
     };
 
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.changeCurrentColor = this.changeCurrentColor.bind(this);
     this.addNewColor = this.addNewColor.bind(this);
+    this.addRandomColor = this.addRandomColor.bind(this);
     this.removeColor = this.removeColor.bind(this);
+    this.clearPalette = this.clearPalette.bind(this);
     this.savePalette = this.savePalette.bind(this);
     this.sortEndHandler = this.sortEndHandler.bind(this);
   }
@@ -143,10 +147,21 @@ class NewPaletteForm extends React.Component {
     }));
   }
 
+  addRandomColor() {
+    const allColors = this.props.palettes.map(palette => palette.colors).flat();
+    const colors = [...this.state.colors, chooseRandomFrom(allColors)];
+
+    this.setState({ colors });
+  }
+
   removeColor(colorName) {
     const colors = this.state.colors.filter(color => color.name !== colorName);
 
     this.setState({ colors });
+  }
+
+  clearPalette() {
+    this.setState({ colors: [] });
   }
 
   savePalette() {
@@ -170,8 +185,9 @@ class NewPaletteForm extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-    const { open, currentColor } = this.state;
+    const { classes, maxColors } = this.props;
+    const { open, currentColor, colors } = this.state;
+    const isPaletteFull = colors.length >= maxColors;
 
     return (
       <div className={classes.root}>
@@ -229,10 +245,19 @@ class NewPaletteForm extends React.Component {
           <Divider />
 
           <Typography variant='h4'>Design Your Palette</Typography>
-          <Button variant='contained' color='secondary'>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={this.clearPalette}
+          >
             Clear Palette
           </Button>
-          <Button variant='contained' color='primary'>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={this.addRandomColor}
+            disabled={isPaletteFull}
+          >
             Random Color
           </Button>
           <ChromePicker
@@ -253,10 +278,17 @@ class NewPaletteForm extends React.Component {
             <Button
               variant='contained'
               color='primary'
-              style={{ backgroundColor: currentColor }}
+              style={
+                isPaletteFull
+                  ? {}
+                  : {
+                      backgroundColor: currentColor
+                    }
+              }
               type='submit'
+              disabled={isPaletteFull}
             >
-              Add Color
+              {isPaletteFull ? 'Palette Full' : 'Add Color'}
             </Button>
           </ValidatorForm>
         </Drawer>
@@ -267,11 +299,12 @@ class NewPaletteForm extends React.Component {
         >
           <div className={classes.drawerHeader} />
           <DraggableColorList
-            colors={this.state.colors}
+            colors={colors}
             removeColor={this.removeColor}
             axis='xy'
             onSortEnd={this.sortEndHandler}
           />
+          {colors.length === 0 && 'Add More Colors...'}
         </main>
       </div>
     );
