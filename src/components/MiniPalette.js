@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from 'react-router-dom';
+import Twemoji from 'react-twemoji';
 
 const styles = {
   root: {
@@ -31,7 +32,8 @@ const styles = {
     color: '#333'
   },
   emoji: {
-    fontSize: '1.1rem'
+    height: '1.3rem',
+    width: '1.3rem'
   }
 };
 
@@ -51,7 +53,8 @@ function MiniPalette({ classes, id, paletteName, emoji, colors, history }) {
         ))}
       </div>
       <figcaption className={classes.title}>
-        {paletteName} <span className={classes.emoji}>{emoji}</span>
+        {paletteName}{' '}
+        <Twemoji options={{ className: classes.emoji }}>{emoji}</Twemoji>
       </figcaption>
     </figure>
   );
