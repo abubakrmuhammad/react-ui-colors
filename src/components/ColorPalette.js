@@ -48,7 +48,7 @@ class ColorPalette extends Component {
     return (
       <div className='ColorPalette Palette'>
         <Navbar format={colorFormat} changeFormat={this.changeFormat} />
-        <section className='Palette__colors'>
+        <main className='Palette__colors'>
           {colorBoxes}
           <div
             style={{ backgroundColor: '#222', cursor: 'default' }}
@@ -62,7 +62,7 @@ class ColorPalette extends Component {
               Go Back
             </Link>
           </div>
-        </section>
+        </main>
         <Overlay
           visible={showOverlay}
           title={`Color Format Changed!`}

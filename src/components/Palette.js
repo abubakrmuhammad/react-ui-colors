@@ -53,7 +53,7 @@ class Palette extends Component {
           palette={colors[500]}
           style={{ fontSize: '60%' }}
         />
-        <section className='Palette__colors'>{colorBoxes}</section>
+        <main className='Palette__colors'>{colorBoxes}</main>
         <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     );
