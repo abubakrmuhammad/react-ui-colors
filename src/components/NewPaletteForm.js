@@ -16,7 +16,7 @@ import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import DraggableColorBox from './DraggableColorBox';
 
-const drawerWidth = 400;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
@@ -85,7 +85,10 @@ class NewPaletteForm extends React.Component {
       newPaletteName: '',
       newColorName: '',
       currentColor: '#10ac84',
-      colors: []
+      colors: [
+        { name: 'Good Green', color: '#10ac84' },
+        { name: 'Good Yellow', color: '#ffeb3b' }
+      ]
     };
 
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
