@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import slugify from 'slugify';
 import { ChromePicker } from 'react-color';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -90,6 +91,7 @@ class NewPaletteForm extends React.Component {
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
     this.changeCurrentColor = this.changeCurrentColor.bind(this);
     this.addNewColor = this.addNewColor.bind(this);
+    this.savePalette = this.savePalette.bind(this);
   }
 
   componentDidMount() {
@@ -127,6 +129,20 @@ class NewPaletteForm extends React.Component {
     }));
   }
 
+  savePalette() {
+    const name = 'New Test Palette';
+    const id = slugify(name, { lower: true });
+
+    const newPalette = {
+      name,
+      id,
+      colors: this.state.colors
+    };
+
+    this.props.savePalette(newPalette);
+    this.props.history.push('/');
+  }
+
   render() {
     const { classes } = this.props;
     const { open, currentColor } = this.state;
@@ -136,6 +152,7 @@ class NewPaletteForm extends React.Component {
         <CssBaseline />
         <AppBar
           position='fixed'
+          color='default'
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open
           })}
@@ -150,8 +167,15 @@ class NewPaletteForm extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' color='inherit' noWrap>
-              Persistent drawer
+              Create Palette
             </Typography>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={this.savePalette}
+            >
+              Save Palette
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer
