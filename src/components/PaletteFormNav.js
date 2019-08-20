@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 350;
 
@@ -41,15 +41,7 @@ class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { newPaletteName: '' };
-  }
-
-  componentDidMount() {
-    ValidatorForm.addValidationRule('isUniquePaletteName', name =>
-      this.props.palettes.every(
-        palette => palette.paletteName.toLowerCase() !== name.toLowerCase()
-      )
-    );
+    this.state = {};
   }
 
   render() {
@@ -58,6 +50,7 @@ class PaletteFormNav extends Component {
     return (
       <Fragment>
         <CssBaseline />
+
         <AppBar
           position='fixed'
           color='default'
@@ -74,33 +67,26 @@ class PaletteFormNav extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant='h6' color='inherit' noWrap>
+
+            <Typography
+              style={{ marginRight: 'auto' }}
+              variant='h6'
+              color='inherit'
+              noWrap
+            >
               Create a Palette
             </Typography>
-            <ValidatorForm
-              style={{ marginLeft: 'auto' }}
-              onSubmit={() => savePalette(this.state.newPaletteName)}
-            >
-              <TextValidator
-                label='Palette Name'
-                value={this.state.newPaletteName}
-                validators={['required', 'isUniquePaletteName']}
-                errorMessages={['Enter a Palette Name', 'Name Already Used']}
-                onChange={e =>
-                  this.setState({ newPaletteName: e.target.value })
-                }
-              />
 
-              <Link to='/'>
-                <Button variant='contained' color='secondary' type='submit'>
-                  Go Back
-                </Button>
-              </Link>
-
-              <Button variant='contained' color='primary' type='submit'>
-                Save Palette
+            <Link to='/'>
+              <Button variant='contained' color='secondary' type='submit'>
+                Go Back
               </Button>
-            </ValidatorForm>
+            </Link>
+
+            <PaletteMetaForm
+              palettes={this.props.palettes}
+              savePalette={savePalette}
+            />
           </Toolbar>
         </AppBar>
       </Fragment>
