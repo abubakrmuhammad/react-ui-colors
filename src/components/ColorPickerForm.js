@@ -43,7 +43,7 @@ class ColorPickerForm extends Component {
   componentDidMount() {
     ValidatorForm.addValidationRule('isUniqueColorName', name =>
       this.props.colors.every(
-        color => color.name.toLowerCase() !== name.toLowerCase()
+        color => color.name.toLowerCase() !== name.trim().toLowerCase()
       )
     );
 
@@ -58,7 +58,7 @@ class ColorPickerForm extends Component {
 
   handleSubmit() {
     const newColor = {
-      name: this.state.newColorName,
+      name: this.state.newColorName.trim(),
       color: this.state.currentColor
     };
 

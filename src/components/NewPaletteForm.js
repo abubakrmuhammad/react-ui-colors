@@ -118,14 +118,11 @@ class NewPaletteForm extends Component {
     this.setState({ colors: [] });
   }
 
-  savePalette(paletteName) {
+  savePalette({ paletteName, emoji }) {
     const id = slugify(paletteName, { lower: true });
+    const { colors } = this.state;
 
-    const newPalette = {
-      paletteName,
-      id,
-      colors: this.state.colors
-    };
+    const newPalette = { paletteName, emoji, id, colors };
 
     this.props.savePalette(newPalette);
     this.props.history.push('/');
@@ -165,7 +162,9 @@ class NewPaletteForm extends Component {
               <ChevronLeftIcon />
             </IconButton>
           </div>
+
           <Divider />
+
           <div className={classes.drawerContent}>
             <Typography style={{ margin: '2rem auto' }} variant='h4'>
               Design Your Palette
