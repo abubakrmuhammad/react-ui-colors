@@ -58,7 +58,10 @@ class PaletteFormNav extends Component {
             [classes.appBarShift]: open
           })}
         >
-          <Toolbar disableGutters={!open}>
+          <Toolbar
+            disableGutters={!open}
+            style={{ paddingRight: open ? '' : '24px' }}
+          >
             <IconButton
               color='inherit'
               aria-label='Open drawer'
@@ -77,7 +80,10 @@ class PaletteFormNav extends Component {
               Create a Palette
             </Typography>
 
-            <Link to='/'>
+            <Link
+              to='/'
+              style={{ marginRight: '12px', textDecoration: 'none' }}
+            >
               <Button variant='contained' color='secondary' type='submit'>
                 Go Back
               </Button>

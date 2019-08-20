@@ -4,7 +4,7 @@ import slugify from 'slugify';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
-// import Divider from '@material-ui/core/Divider';
+import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
@@ -165,7 +165,7 @@ class NewPaletteForm extends Component {
               <ChevronLeftIcon />
             </IconButton>
           </div>
-
+          <Divider />
           <div className={classes.drawerContent}>
             <Typography style={{ margin: '2rem auto' }} variant='h4'>
               Design Your Palette

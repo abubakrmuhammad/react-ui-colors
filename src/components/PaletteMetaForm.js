@@ -52,17 +52,22 @@ class PaletteMetaForm extends Component {
         </Button>
 
         <Dialog open={open} onClose={this.handleClose}>
-          <DialogTitle id='form-dialog-title'>Subscribe</DialogTitle>
+          <DialogTitle id='form-dialog-title'>
+            Choose a Palette Name
+          </DialogTitle>
 
-          <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
-            </DialogContentText>
-            <ValidatorForm
-              onSubmit={() => savePalette(this.state.newPaletteName)}
-            >
+          <ValidatorForm
+            onSubmit={() => savePalette(this.state.newPaletteName)}
+          >
+            <DialogContent style={{ paddingTop: '0', paddingBottom: '24px' }}>
+              <DialogContentText>
+                Please give your beautiful new palette a good name. Make sure
+                it's not already been used.
+              </DialogContentText>
+
               <TextValidator
+                fullWidth
+                margin='normal'
                 label='Palette Name'
                 value={newPaletteName}
                 validators={['required', 'isUniquePaletteName']}
@@ -71,21 +76,17 @@ class PaletteMetaForm extends Component {
                   this.setState({ newPaletteName: e.target.value })
                 }
               />
+            </DialogContent>
 
-              <Button variant='contained' color='primary' type='submit'>
-                Save Palette
+            <DialogActions>
+              <Button onClick={this.handleClose} color='primary'>
+                Cancel
               </Button>
-            </ValidatorForm>
-          </DialogContent>
-
-          <DialogActions>
-            <Button onClick={this.handleClose} color='primary'>
-              Cancel
-            </Button>
-            <Button onClick={this.handleClose} color='primary'>
-              Subscribe
-            </Button>
-          </DialogActions>
+              <Button variant='contained' color='primary' type='submit'>
+                Save
+              </Button>
+            </DialogActions>
+          </ValidatorForm>
         </Dialog>
       </Fragment>
     );
