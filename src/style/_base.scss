@@ -18,6 +18,12 @@ body {
   overflow: hidden;
 }
 
+.emoji {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin: 0 12px -3px 8px;
+}
+
 .light-text * {
   color: #fff !important;
 }

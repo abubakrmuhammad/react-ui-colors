@@ -1,12 +1,14 @@
 import React, { Fragment, Component } from 'react';
+import Twemoji from 'react-twemoji';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
 
 class PaletteMetaForm extends Component {
   constructor(props) {
@@ -53,8 +55,12 @@ class PaletteMetaForm extends Component {
 
         <Dialog open={open} onClose={this.handleClose}>
           <DialogTitle id='form-dialog-title'>
-            Choose a Palette Name
+            Choose a Palette Name{' '}
+            <Twemoji noWrapper options={{ className: 'emoji' }}>
+              <span>{'🎨'}</span>
+            </Twemoji>
           </DialogTitle>
+          <Picker set='twitter' />
 
           <ValidatorForm
             onSubmit={() => savePalette(this.state.newPaletteName)}
