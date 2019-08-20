@@ -4,7 +4,7 @@ import slugify from 'slugify';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+// import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
@@ -14,32 +14,11 @@ import ColorPickerFrom from './ColorPickerForm';
 import { arrayMove } from 'react-sortable-hoc';
 import { chooseRandomFrom } from '../utils/misc';
 
-const drawerWidth = 300;
+const drawerWidth = 350;
 
 const styles = theme => ({
   root: {
     display: 'flex'
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20
-  },
-  hide: {
-    display: 'none'
   },
   drawer: {
     width: drawerWidth,
@@ -54,6 +33,17 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end'
+  },
+  drawerContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  drawerButtons: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '85%'
   },
   content: {
     flexGrow: 1,
@@ -156,7 +146,6 @@ class NewPaletteForm extends Component {
       <div className={classes.root}>
         <PaletteFormNav
           palettes={palettes}
-          classes={classes}
           open={open}
           savePalette={this.savePalette}
           handleDrawerOpen={this.handleDrawerOpen}
@@ -177,31 +166,37 @@ class NewPaletteForm extends Component {
             </IconButton>
           </div>
 
-          <Divider />
+          <div className={classes.drawerContent}>
+            <Typography style={{ margin: '2rem auto' }} variant='h4'>
+              Design Your Palette
+            </Typography>
+            <div className={classes.drawerButtons}>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={this.clearPalette}
+              >
+                Clear Palette
+              </Button>
 
-          <Typography variant='h4'>Design Your Palette</Typography>
-          <Button
-            variant='contained'
-            color='secondary'
-            onClick={this.clearPalette}
-          >
-            Clear Palette
-          </Button>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={this.addRandomColor}
-            disabled={isPaletteFull}
-          >
-            Random Color
-          </Button>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={this.addRandomColor}
+                disabled={isPaletteFull}
+              >
+                Random Color
+              </Button>
+            </div>
 
-          <ColorPickerFrom
-            colors={colors}
-            isPaletteFull={isPaletteFull}
-            addNewColor={this.addNewColor}
-          />
+            <ColorPickerFrom
+              colors={colors}
+              isPaletteFull={isPaletteFull}
+              addNewColor={this.addNewColor}
+            />
+          </div>
         </Drawer>
+
         <main
           className={classNames(classes.content, {
             [classes.contentShift]: open
