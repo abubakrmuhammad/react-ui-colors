@@ -77,6 +77,7 @@ class ColorPickerForm extends Component {
             className={classes.picker}
             color={currentColor}
             onChange={this.changeCurrentColor}
+            disableAlpha
           />
           <TextValidator
             className={classes.colorNameInput}
