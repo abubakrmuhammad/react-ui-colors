@@ -19,6 +19,22 @@ class App extends Component {
     this.savePalette = this.savePalette.bind(this);
   }
 
+  componentDidMount() {
+    const stringPalettes = localStorage.getItem('palettes');
+
+    if (stringPalettes) {
+      const palettes = JSON.parse(stringPalettes);
+
+      this.setState({ palettes });
+    }
+  }
+
+  saveLocally() {
+    const stringPalettes = JSON.stringify(this.state.palettes);
+
+    localStorage.setItem('palettes', stringPalettes);
+  }
+
   findPalette(id) {
     return generatePalette(
       this.state.palettes.find(palette => palette.id === id)
@@ -28,7 +44,7 @@ class App extends Component {
   savePalette(palette) {
     const palettes = [...this.state.palettes, palette];
 
-    this.setState({ palettes });
+    this.setState({ palettes }, this.saveLocally);
   }
 
   render() {
