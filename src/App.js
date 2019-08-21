@@ -11,22 +11,14 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    const savedPalettes = JSON.parse(localStorage.getItem('palettes'));
+
     this.state = {
-      palettes: palettes
+      palettes: savedPalettes || palettes
     };
 
     this.findPalette = this.findPalette.bind(this);
     this.savePalette = this.savePalette.bind(this);
-  }
-
-  componentDidMount() {
-    const stringPalettes = localStorage.getItem('palettes');
-
-    if (stringPalettes) {
-      const palettes = JSON.parse(stringPalettes);
-
-      this.setState({ palettes });
-    }
   }
 
   saveLocally() {
