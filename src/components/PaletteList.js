@@ -6,7 +6,7 @@ import MiniPalette from './MiniPalette';
 const styles = {
   root: {
     backgroundColor: '#34495e',
-    height: '100vh'
+    minHeight: '100vh'
   },
   container: {
     maxWidth: '1024px',

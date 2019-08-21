@@ -1,16 +1,22 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withRouter } from 'react-router-dom';
 import Twemoji from 'react-twemoji';
 
 const styles = {
   root: {
+    position: 'relative',
     backgroundColor: '#fff',
     borderRadius: '5px',
     padding: '0.5rem 0.6rem 0',
     overflow: 'hidden',
     cursor: 'pointer',
-    height: '200px'
+    height: '200px',
+    '&:hover .deleteIcon': {
+      visibility: 'visible',
+      opacity: 1
+    }
   },
   colors: {
     backgroundColor: '#ccc',
@@ -23,6 +29,18 @@ const styles = {
   miniColor: {
     height: '25%',
     width: '20%'
+  },
+  deleteIcon: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: '#e74c3c',
+    color: '#fff',
+    padding: '8px 12px',
+    zIndex: '10',
+    opacity: 0,
+    visibility: 'hidden',
+    transition: 'opacity .3s'
   },
   title: {
     height: '20%',
@@ -43,6 +61,9 @@ function MiniPalette({ classes, id, paletteName, emoji, colors, history }) {
       className={classes.root}
       onClick={() => history.push(`/palette/${id}`)}
     >
+      <div className={`${classes.deleteIcon} deleteIcon`}>
+        <DeleteIcon />
+      </div>
       <div className={classes.colors}>
         {colors.map(color => (
           <div
