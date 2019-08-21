@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { withRouter } from 'react-router-dom';
@@ -55,30 +55,49 @@ const styles = {
   }
 };
 
-function MiniPalette({ classes, id, paletteName, emoji, colors, history }) {
-  return (
-    <figure
-      className={classes.root}
-      onClick={() => history.push(`/palette/${id}`)}
-    >
-      <div className={`${classes.deleteIcon} deleteIcon`}>
-        <DeleteIcon />
-      </div>
-      <div className={classes.colors}>
-        {colors.map(color => (
-          <div
-            className={classes.miniColor}
-            style={{ backgroundColor: color.color }}
-            key={color.name}
-          />
-        ))}
-      </div>
-      <figcaption className={classes.title}>
-        {paletteName}{' '}
-        <Twemoji options={{ className: classes.emoji }}>{emoji}</Twemoji>
-      </figcaption>
-    </figure>
-  );
+class MiniPalette extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this.deletePalette = this.deletePalette.bind(this);
+  }
+
+  deletePalette(event) {
+    event.stopPropagation();
+
+    this.props.deletePalette(this.props.id);
+  }
+
+  render() {
+    const { classes, id, paletteName, emoji, colors, history } = this.props;
+    return (
+      <figure
+        className={classes.root}
+        onClick={() => history.push(`/palette/${id}`)}
+      >
+        <div
+          className={`${classes.deleteIcon} deleteIcon`}
+          onClick={this.deletePalette}
+        >
+          <DeleteIcon />
+        </div>
+        <div className={classes.colors}>
+          {colors.map(color => (
+            <div
+              className={classes.miniColor}
+              style={{ backgroundColor: color.color }}
+              key={color.name}
+            />
+          ))}
+        </div>
+        <figcaption className={classes.title}>
+          {paletteName}{' '}
+          <Twemoji options={{ className: classes.emoji }}>{emoji}</Twemoji>
+        </figcaption>
+      </figure>
+    );
+  }
 }
 
 export default withStyles(styles)(withRouter(MiniPalette));

@@ -19,9 +19,10 @@ class App extends Component {
 
     this.findPalette = this.findPalette.bind(this);
     this.savePalette = this.savePalette.bind(this);
+    this.deletePalette = this.deletePalette.bind(this);
   }
 
-  saveLocally() {
+  savePalettesLocally() {
     const stringPalettes = JSON.stringify(this.state.palettes);
 
     localStorage.setItem('palettes', stringPalettes);
@@ -36,7 +37,13 @@ class App extends Component {
   savePalette(palette) {
     const palettes = [...this.state.palettes, palette];
 
-    this.setState({ palettes }, this.saveLocally);
+    this.setState({ palettes }, this.savePalettesLocally);
+  }
+
+  deletePalette(id) {
+    const palettes = this.state.palettes.filter(palette => palette.id !== id);
+
+    this.setState({ palettes }, this.savePalettesLocally);
   }
 
   render() {
@@ -45,7 +52,12 @@ class App extends Component {
         <Route
           exact
           path='/'
-          render={() => <PaletteList palettes={this.state.palettes} />}
+          render={() => (
+            <PaletteList
+              deletePalette={this.deletePalette}
+              palettes={this.state.palettes}
+            />
+          )}
         />
         <Route
           exact
