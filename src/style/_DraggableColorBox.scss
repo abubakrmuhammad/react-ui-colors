@@ -1,10 +1,15 @@
+.DraggableColorList {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
 .DraggableColorBox {
   position: relative;
   user-select: none;
   display: inline-block;
   color: #fff;
-  height: 25%;
-  width: 20%;
 
   & > * {
     position: absolute;
