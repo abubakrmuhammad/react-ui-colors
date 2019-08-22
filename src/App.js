@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import PaletteList from './components/PaletteList';
 import Palette from './components/Palette';
 import ColorPalette from './components/ColorPalette';
@@ -87,6 +87,8 @@ class App extends Component {
             />
           )}
         />
+
+        <Route render={() => <Redirect to='/' />} />
       </Switch>
     );
   }
