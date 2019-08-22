@@ -19,6 +19,7 @@ export function generatePalette(palette) {
       const name = `${color.name} ${level}`;
       const id = slugify(color.name, { lower: true });
       const hex = shade;
+      const hexNot = shade.slice(1);
       const rgb = chroma(shade).css();
       const hsl = chroma(shade).css('hsl');
       const rgba = chroma(shade)
@@ -26,7 +27,7 @@ export function generatePalette(palette) {
         .css()
         .replace('0.9', '1.0');
 
-      newColors[levels[i]].push({ name, id, hex, rgb, rgba, hsl });
+      newColors[levels[i]].push({ name, id, hex, hexNot, rgb, rgba, hsl });
     });
   });
 
