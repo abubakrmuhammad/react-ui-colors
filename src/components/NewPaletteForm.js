@@ -13,7 +13,7 @@ import PaletteFormNav from './PaletteFormNav';
 import ColorPickerFrom from './ColorPickerForm';
 import { arrayMove } from 'react-sortable-hoc';
 import { chooseRandomFrom } from '../utils/misc';
-import palettes from '../palettes';
+import palettes9 from '../palettes';
 
 const drawerWidth = 350;
 
@@ -75,7 +75,7 @@ class NewPaletteForm extends Component {
 
     this.state = {
       open: true,
-      colors: palettes[0].colors
+      colors: palettes9[0].colors
     };
 
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
@@ -103,8 +103,21 @@ class NewPaletteForm extends Component {
   }
 
   addRandomColor() {
-    const allColors = this.props.palettes.map(palette => palette.colors).flat();
-    const colors = [...this.state.colors, chooseRandomFrom(allColors)];
+    const palettes =
+      this.props.palettes.length !== 0 ? this.props.palettes : palettes9;
+
+    const allColors = palettes.map(palette => palette.colors).flat();
+
+    let randomColor, isDuplicate;
+
+    do {
+      randomColor = chooseRandomFrom(allColors);
+      const { name } = randomColor;
+
+      isDuplicate = this.state.colors.some(color => color.name === name);
+    } while (isDuplicate);
+
+    const colors = [...this.state.colors, randomColor];
 
     this.setState({ colors });
   }
