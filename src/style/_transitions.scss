@@ -33,14 +33,17 @@
     }
 
     &-active {
+      * {
+        z-index: inherit !important;
+      }
+
       &::after {
         transform: scaleX(1);
       }
     }
 
     &-done {
-      z-index: 9998;
-
+      z-index: 21;
       &::after {
         transform-origin: left;
         transform: scaleX(0);
@@ -49,7 +52,11 @@
   }
 
   &-exit {
-    z-index: 9997;
+    z-index: 20;
+
+    * {
+      z-index: inherit !important;
+    }
 
     &-done {
       z-index: -1;
