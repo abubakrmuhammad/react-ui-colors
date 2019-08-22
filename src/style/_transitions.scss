@@ -1,21 +1,58 @@
-.fade {
-  &-exit {
-    opacity: 1;
-
-    &-active {
-      opacity: 0;
-      transition: opacity 0.5s ease-out;
-    }
-  }
-}
-
 .popout {
   &-exit {
     transform: scale(1);
 
     &-active {
       transform: scale(0);
-      transition: transform 0.3s 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      transition: transform 0.3s 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    }
+  }
+}
+
+.page {
+  width: 100%;
+  position: absolute;
+
+  &::after {
+    content: '';
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    z-index: 9999;
+    transition: transform 0.3s;
+  }
+
+  &-enter {
+    &::after {
+      transform-origin: right;
+      transform: scaleX(0);
+    }
+
+    &-active {
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &-done {
+      z-index: 9998;
+
+      &::after {
+        transform-origin: left;
+        transform: scaleX(0);
+      }
+    }
+  }
+
+  &-exit {
+    z-index: 9997;
+
+    &-done {
+      z-index: -1;
     }
   }
 }

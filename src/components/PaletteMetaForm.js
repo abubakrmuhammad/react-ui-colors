@@ -54,6 +54,7 @@ class PaletteMetaForm extends Component {
       emoji: this.state.emoji
     };
 
+    this.setState({ stage: 'saved' });
     this.props.savePalette(newPalette);
   }
 
@@ -121,6 +122,7 @@ class PaletteMetaForm extends Component {
 
               <TextValidator
                 fullWidth
+                autoFocus
                 margin='normal'
                 label='Palette Name'
                 value={newPaletteName}

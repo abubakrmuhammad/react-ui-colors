@@ -1,6 +1,7 @@
 .Palette {
   height: 100vh;
   position: relative;
+  background-color: #fff;
 
   & *::selection {
     background: #10ac84;
