@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { ChromePicker } from 'react-color';
+import chroma from 'chroma-js';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -70,9 +71,16 @@ class ColorPickerForm extends Component {
     const { isPaletteFull, classes } = this.props;
     const { currentColor, newColorName } = this.state;
 
+    const luminance = chroma(currentColor).luminance();
+    const isLightColor = luminance >= 0.8;
+
     return (
       <Fragment>
-        <ValidatorForm className={classes.form} onSubmit={this.handleSubmit}>
+        <ValidatorForm
+          className={classes.form}
+          onSubmit={this.handleSubmit}
+          instantValidate={false}
+        >
           <ChromePicker
             className={classes.picker}
             color={currentColor}
@@ -95,7 +103,8 @@ class ColorPickerForm extends Component {
           <Button
             variant='contained'
             color='primary'
-            className={classes.addColorButton}
+            className={`${classes.addColorButton} ${isLightColor &&
+              'dark-text'}`}
             style={
               isPaletteFull
                 ? {}

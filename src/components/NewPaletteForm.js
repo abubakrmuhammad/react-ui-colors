@@ -13,6 +13,7 @@ import PaletteFormNav from './PaletteFormNav';
 import ColorPickerFrom from './ColorPickerForm';
 import { arrayMove } from 'react-sortable-hoc';
 import { chooseRandomFrom } from '../utils/misc';
+import palettes from '../palettes';
 
 const drawerWidth = 350;
 
@@ -74,7 +75,7 @@ class NewPaletteForm extends Component {
 
     this.state = {
       open: true,
-      colors: props.palettes[0].colors
+      colors: palettes[0].colors
     };
 
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
